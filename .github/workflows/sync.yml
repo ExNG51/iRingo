@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           repository: VirgilClyne/iRingo
-          ref: master # 你想要同步的分支
+          ref: main # 你想要同步的分支
           path: upstream_repo
           fetch-depth: 0 # 获取完整的仓库历史记录
         continue-on-error: true # 允许继续，即使失败
@@ -28,7 +28,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           repository: ExNG51/iRingo
-          ref: master
+          ref: main
           token: ${{ secrets.SYNCWITHUPSTREAM }}
           path: fork_repo
           fetch-depth: 0 # 获取完整的仓库历史记录
@@ -48,5 +48,5 @@ jobs:
           cd fork_repo
           git remote add upstream ../upstream_repo
           git fetch upstream || (echo "Failed to fetch from upstream repository. The repository or branch may have been deleted." && exit 1)
-          git merge upstream/master --no-edit || (echo "Failed to merge from upstream repository. The branch may have been deleted." && exit 1)
-          git push origin master || (echo "Failed to push to fork repository." && exit 1)
+          git merge upstream/main --no-edit || (echo "Failed to merge from upstream repository. The branch may have been deleted." && exit 1)
+          git push origin main || (echo "Failed to push to fork repository." && exit 1)
